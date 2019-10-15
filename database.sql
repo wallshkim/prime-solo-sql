@@ -40,3 +40,22 @@ VALUES('ScoobyDoo', 'Mystery Machine', 0, 20, 0.00);
 DELETE FROM "accounts"
 WHERE "transactions_completed"<5
 AND ("city"='miami' OR "city"='phoenix');
+
+
+-- STRETCH LEVEL:
+-- 1. Anthony moved to Santa Fe.
+UPDATE "accounts" SET "city"='santa fe'
+WHERE "username" = 'anthony';
+
+-- 2. Grace closed her account.
+DELETE FROM "accounts"
+WHERE "username" = 'grace';
+
+-- 3. Travis made a withdrawl of $20,000. What's their new balance? NOTE: Research RETURNING
+UPDATE "accounts" SET "account_balance" = ("account_balance" - 20000.00)
+WHERE "username" = 'travis'
+RETURNING "account_balance";
+
+-- 4. The Bank needs to track last names. NOTE: Research ALTER TABLE https://www.postgresql.org/docs/10/static/sql-altertable.html
+ALTER TABLE "accounts"
+ADD COLUMN "last_name" VARCHAR(20);
